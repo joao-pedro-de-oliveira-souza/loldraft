@@ -69,7 +69,10 @@ public static class TournamentUi
                     var extra = (e.Player.SecondaryRole is { } s ? $" · {s.Emoji()}" : "") + (e.Player.IsFill ? " · 🎲" : "");
                     return $"{marks}{Mention(e.Player)}{extra}";
                 }).ToList();
-            eb.AddField($"{Ui.RoleText(role)} ({list.Count})", list.Count == 0 ? "—" : Clip(string.Join("\n", list)), inline: true);
+            var players = list.Count == 0
+                ? "—"
+                : string.Join("\n", list);
+            eb.AddField($"{role.Label()} ({list.Count})", Clip($"{role.Emoji()}\n{players}"), inline: true);
         }
 
         eb.WithFooter($"#{t.Id} · 👑 capitão · emoji = secundária · 🎲 fill" +
