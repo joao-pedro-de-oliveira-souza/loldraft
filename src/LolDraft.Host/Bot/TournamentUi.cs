@@ -221,7 +221,7 @@ public static class TournamentUi
                 var elo = p.Riot?.Tier != null ? $" · {p.Riot.Tier} {p.Riot.Division}" : "";
                 var label = p.DisplayName.Length > 100 ? p.DisplayName[..100] : p.DisplayName;
                 menu.AddOption(label, e.Id.ToString(), description: (roles + elo).Length > 100 ? (roles + elo)[..100] : roles + elo,
-                    emote: new Emoji(p.PrimaryRole.Emoji()));
+                    emote: Ui.RoleEmote(p.PrimaryRole));
             }
             cb.WithSelectMenu(menu, row: 0);
         }

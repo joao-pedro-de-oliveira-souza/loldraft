@@ -74,7 +74,7 @@ public static class Ui
             .WithPlaceholder("Role principal")
             .WithMinValues(1).WithMaxValues(1);
         foreach (var r in LolRoleExtensions.All)
-            primary.AddOption(r.Label(), r.ToString(), emote: new Emoji(r.Emoji()), isDefault: player?.PrimaryRole == r);
+            primary.AddOption(r.Label(), r.ToString(), emote: Ui.RoleEmote(r), isDefault: player?.PrimaryRole == r);
 
         var secondary = new SelectMenuBuilder()
             .WithCustomId(RegSecondary)
@@ -82,7 +82,7 @@ public static class Ui
             .WithMinValues(1).WithMaxValues(1)
             .AddOption("Nenhuma", "none", isDefault: player != null && player.SecondaryRole == null);
         foreach (var r in LolRoleExtensions.All)
-            secondary.AddOption(r.Label(), r.ToString(), emote: new Emoji(r.Emoji()), isDefault: player?.SecondaryRole == r);
+            secondary.AddOption(r.Label(), r.ToString(), emote: Ui.RoleEmote(r), isDefault: player?.SecondaryRole == r);
 
         var fillOn = player?.IsFill ?? false;
         var components = new ComponentBuilder()
@@ -100,5 +100,17 @@ public static class Ui
               "\nAs mudanças são salvas na hora.";
 
         return (content, components);
+    }
+
+    // método para aceitar dois formatos de emoji
+
+    public static IEmote RoleEmote(LolRole role)
+    {
+        var value = role.Emoji();
+
+        if (Emote.TryParse(value, out var custom))
+            return custom;
+
+        return new Emoji(value);
     }
 }
