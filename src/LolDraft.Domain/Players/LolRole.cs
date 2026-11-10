@@ -28,11 +28,11 @@ public static class LolRoleExtensions
     /// <summary>Emoji usado nos embeds e menus do Discord.</summary>
     public static string Emoji(this LolRole role) => role switch
     {
-        LolRole.Top => "🛡️",
-        LolRole.Jungle => "🌲",
-        LolRole.Mid => "🔥",
-        LolRole.Adc => "🏹",
-        LolRole.Support => "💖",
+        LolRole.Top => "<:Top_icon:1569773893449810112>",
+        LolRole.Jungle => "<:Jungle_icon:1569774318794182738>",
+        LolRole.Mid => "<:Mid_icon:1569774425698738176>",
+        LolRole.Adc => "<:Adc_icon:1569774462877040650>",
+        LolRole.Support => "<:Support_icon:1569774188527362059>",
         _ => "❔"
     };
 }
