@@ -1,0 +1,14 @@
+bin/
+obj/
+.vs/
+.idea/
+*.user
+*.db
+*.db-shm
+*.db-wal
+appsettings.Development.json
+appsettings.Local.json
+
+# Angular
+web/node_modules/
+web/.angular/
